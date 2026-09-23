@@ -1,0 +1,16 @@
+[project]
+name = "moss-soundeffect-v2"
+description = "Text-to-sound-effect nodes for MOSS-SoundEffect v2. Inference runs in a separate Python 3.12 process."
+version = "0.1.0"
+license = { file = "LICENSE" }
+dependencies = []
+
+[project.urls]
+# 第一次发布前改成这个节点仓库的地址。
+Repository = ""
+
+[tool.comfy]
+# 在 https://registry.comfy.org 注册。个人页上是 @你的id，这里不要带 @。
+# name 和 PublisherId 第一次发布后都不能改。name 不要包含 ComfyUI。
+PublisherId = ""
+DisplayName = "MOSS SoundEffect v2"
