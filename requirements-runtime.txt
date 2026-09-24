@@ -1,0 +1,17 @@
+# 只装进节点目录的 .venv。不要把本文件改名为 requirements.txt。
+# ComfyUI-Manager 会把 requirements.txt 装进 ComfyUI 自己的 Python。
+# torch / torchaudio 由 bootstrap.py 按本机 CUDA 选择，不写死 cu128。
+numpy==1.26.4
+einops==0.8.2
+pillow==12.2.0
+tqdm==4.67.3
+safetensors==0.7.0
+transformers==4.57.1
+diffusers==0.37.1
+ftfy==6.3.1
+regex==2026.4.4
+soundfile==0.13.1
+imageio==2.37.3
+typing-extensions>=4.10
+descript-audiotools==0.7.2
+huggingface_hub>=0.34

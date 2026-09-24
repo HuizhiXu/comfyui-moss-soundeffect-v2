@@ -1,7 +1,8 @@
 This node runs MOSS-SoundEffect v2.
 
-The model weights and the inference package moss_soundeffect_v2 come from the
-OpenMOSS Team MOSS-TTS project and are licensed under the Apache License 2.0.
+The inference package under moss_soundeffect_v2/ is vendored from the OpenMOSS
+Team MOSS-TTS project at commit 934d6826b084c46a0d033402174d5f8ac4ed2519 and is
+licensed under the Apache License 2.0. Model weights are not included.
 
 https://github.com/OpenMOSS/MOSS-TTS
 https://huggingface.co/OpenMOSS-Team/MOSS-SoundEffect-v2.0

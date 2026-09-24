@@ -1,14 +1,37 @@
 """MOSS-SoundEffect v2 推理进程。
 
-由加载节点里填写的 Python 3.12 解释器启动，不由 ComfyUI 的 Python 导入。
+由探测通过的解释器启动，不由 ComfyUI 在导入节点时加载模型。
 标准输出只写一行一个 JSON。模型加载时的打印转到标准错误，避免和协议混在一起。
 """
 
 from __future__ import annotations
 
 import json
+import os
 import sys
 import traceback
+
+
+def _use_caching_allocator() -> None:
+    # ComfyUI 默认 backend:cudaMallocAsync。DiT 的 torch.compile 打开了
+    # CUDA Graph，而 cudaMallocAsync 还不支持 checkPoolLiveAllocations。
+    # 分配器必须在 import torch 之前选定。
+    key = "PYTORCH_CUDA_ALLOC_CONF"
+    conf = os.environ.get(key, "")
+    if "cudaMallocAsync" not in conf:
+        return
+    parts = [part for part in conf.split(",") if part and "cudaMallocAsync" not in part]
+    if parts:
+        os.environ[key] = ",".join(parts)
+    else:
+        os.environ.pop(key, None)
+    print(
+        "[moss-soundeffect] cudaMallocAsync 与 CUDA Graph 不兼容，推理进程改用缓存分配器",
+        file=sys.stderr,
+    )
+
+
+_use_caching_allocator()
 
 
 def _reply(protocol, payload: dict) -> None:

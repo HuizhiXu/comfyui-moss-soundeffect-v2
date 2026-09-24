@@ -1,3 +1,3 @@
 # 这个文件故意不列出依赖。
 # ComfyUI-Manager 会把 requirements.txt 装进 ComfyUI 自己的 Python。
-# 推理在节点上填写的 Python 3.12 里运行，见 README.md。
+# 推理依赖在 requirements-runtime.txt，只装进节点目录的 .venv。
